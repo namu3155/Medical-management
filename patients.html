@@ -1,0 +1,14 @@
+<h2>Patients</h2>
+
+<form action="/patient/create" method="post">
+<input name="name" placeholder="Name">
+<input name="age" type="number">
+<input name="phone" placeholder="Phone">
+<button>Add</button>
+</form>
+
+<ul>
+{% for p in patients %}
+<li>{{p.name}} - {{p.phone}}</li>
+{% endfor %}
+</ul>
