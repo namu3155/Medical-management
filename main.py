@@ -8,8 +8,15 @@ from auth import create_token
 models.Base.metadata.create_all(bind=engine)
 
 app = FastAPI()
-templates = Jinja2Templates(directory="templates") 
+import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+templates = Jinja2Templates(directory=os.path.join(BASE_DIR, "templates"))
+
 # ---------------- LOGIN ----------------
+@app.get("/test")
+def test():
+    return {"status": "render working"}
+
 @app.get("/", response_class=HTMLResponse)
 def login_page(request: Request):
     return templates.TemplateResponse("login.html", {"request": request})
